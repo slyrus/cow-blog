@@ -396,15 +396,15 @@
   (let [tag {:title title :url url}]
    (or (validate-tag-category "/admin" tag)
        (do
-         (error/with-err-str (oyako/insert :tags ))
+         (error/with-err-str (oyako/insert :tags tag))
          (flash/message "Tag added.")
          (response/redirect "/admin")))))
 
 (defn do-add-category [title url]
   (let [cat {:title title :url url}]
-    (or (validate-tag-category cat)
+    (or (validate-tag-category "/admin" cat)
         (do
-         (error/with-err-str (oyako/insert :categories))
+         (error/with-err-str (oyako/insert :categories cat))
          (flash/message "Category added.")
          (response/redirect "/admin")))))
 
